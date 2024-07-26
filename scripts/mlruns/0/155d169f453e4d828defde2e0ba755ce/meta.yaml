@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/anike/Tutorial_MSCI446/Mlops_MLFLOW/scripts/mlruns/0/155d169f453e4d828defde2e0ba755ce/artifacts
+end_time: 1722006761329
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 155d169f453e4d828defde2e0ba755ce
+run_name: enchanting-gnat-381
+run_uuid: 155d169f453e4d828defde2e0ba755ce
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1722006758481
+status: 3
+tags: []
+user_id: anike

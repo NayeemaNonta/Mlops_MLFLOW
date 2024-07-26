@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/anike/Tutorial_MSCI446/Mlops_MLFLOW/scripts/mlruns/0/a20bf0e3f97f4997a46f4e3743c60b08/artifacts
+end_time: 1722006732109
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a20bf0e3f97f4997a46f4e3743c60b08
+run_name: adaptable-snake-925
+run_uuid: a20bf0e3f97f4997a46f4e3743c60b08
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1722006729171
+status: 3
+tags: []
+user_id: anike

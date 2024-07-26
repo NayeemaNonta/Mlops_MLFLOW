@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/anike/Tutorial_MSCI446/Mlops_MLFLOW/scripts/mlruns/0/b7174214baed4413881a8400b65754da/artifacts
+deleted_time: 1722006564797
+end_time: 1722005807029
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: b7174214baed4413881a8400b65754da
+run_name: peaceful-duck-978
+run_uuid: b7174214baed4413881a8400b65754da
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1722005803619
+status: 3
+tags: []
+user_id: anike

@@ -1,0 +1,15 @@
+digest: 078a36bd
+name: dataset
+profile: '{"num_rows": 404, "num_elements": 5252}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "CRIM", "required": true},
+  {"type": "double", "name": "ZN", "required": true}, {"type": "double", "name": "INDUS",
+  "required": true}, {"type": "long", "name": "CHAS", "required": true}, {"type":
+  "double", "name": "NOX", "required": true}, {"type": "double", "name": "RM", "required":
+  true}, {"type": "double", "name": "AGE", "required": true}, {"type": "double", "name":
+  "DIS", "required": true}, {"type": "long", "name": "RAD", "required": true}, {"type":
+  "double", "name": "TAX", "required": true}, {"type": "double", "name": "PTRATIO",
+  "required": true}, {"type": "double", "name": "B", "required": true}, {"type": "double",
+  "name": "LSTAT", "required": true}]}'
+source: '{"tags": {"mlflow.user": "anike", "mlflow.source.name": "mlflow_autologging.py",
+  "mlflow.source.type": "LOCAL"}}'
+source_type: code

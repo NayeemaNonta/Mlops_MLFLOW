@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/anike/Tutorial_MSCI446/Mlops_MLFLOW/scripts/mlruns/0/adcabc2fe4914607b18310cbe7ab62dd/artifacts
+end_time: 1722006580143
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: adcabc2fe4914607b18310cbe7ab62dd
+run_name: smiling-worm-953
+run_uuid: adcabc2fe4914607b18310cbe7ab62dd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1722006576689
+status: 3
+tags: []
+user_id: anike
