@@ -147,6 +147,9 @@ jobs:
   ci:
     name: CI - install and smoke test
     runs-on: ubuntu-latest
+    env:
+      MLFLOW_TRACKING_URI: file:./mlruns
+      MLFLOW_ALLOW_FILE_STORE: "true"
 
     strategy:
       matrix:
@@ -157,7 +160,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
@@ -168,20 +171,16 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run manual MLflow training smoke test
-        env:
-          MLFLOW_TRACKING_URI: file:./mlruns
         run: |
           python scripts/mlflow_manual_logging.py --n_estimators 20 --max_depth 5
 
       - name: Run autologging MLflow training smoke test
-        env:
-          MLFLOW_TRACKING_URI: file:./mlruns
         run: |
           python scripts/mlflow_autologging.py --n_estimators 20 --max_depth 5
 
       - name: Upload MLflow run artifact
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mlflow-runs-${{ github.run_number }}
           path: mlruns/
@@ -196,7 +195,7 @@ jobs:
 
     steps:
       - name: Download MLflow artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v8
         with:
           name: mlflow-runs-${{ github.run_number }}
           path: delivered-mlruns
@@ -288,7 +287,7 @@ This downloads the repository code into the runner. Without this step, the runne
 ### Python Setup
 
 ```yaml
-uses: actions/setup-python@v5
+uses: actions/setup-python@v6
 ```
 
 This installs and activates the requested Python version on the runner.
@@ -320,10 +319,18 @@ MLFLOW_TRACKING_URI: file:./mlruns
 
 This tells MLflow to write run output to a local `mlruns/` folder inside the GitHub runner workspace. The folder is then uploaded as an artifact.
 
+The workflow also sets:
+
+```yaml
+MLFLOW_ALLOW_FILE_STORE: "true"
+```
+
+Recent MLflow versions require this explicit setting when using the filesystem tracking backend for teaching or local workflows.
+
 ### Artifact Upload
 
 ```yaml
-uses: actions/upload-artifact@v4
+uses: actions/upload-artifact@v7
 ```
 
 This stores the generated `mlruns/` folder after the job finishes. Artifacts are useful for logs, reports, model outputs, and other files produced during automation.
