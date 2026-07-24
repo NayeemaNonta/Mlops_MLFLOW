@@ -2,6 +2,8 @@
 
 This tutorial teaches the basic CI/CD workflow using this repository as the example project. The repo contains a small Python machine learning workflow that trains a random forest model, logs parameters and metrics with MLflow, and saves run outputs as MLflow artifacts.
 
+This repository includes the completed GitHub Actions workflow. If students are using a starter copy without the workflow, they can follow the steps below to create it from scratch. If they are using this completed copy, they can read the workflow in `.github/workflows/mlflow-ci-cd.yml` and compare it to the tutorial.
+
 ## What Students Will Learn
 
 By the end of this tutorial, students should be able to:
@@ -87,27 +89,31 @@ python -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 pip install -r requirements.txt
+export MLFLOW_TRACKING_URI=file:./mlruns
+export MLFLOW_ALLOW_FILE_STORE=true
 python scripts/mlflow_manual_logging.py --n_estimators 20 --max_depth 5
 python scripts/mlflow_autologging.py --n_estimators 20 --max_depth 5
 ```
 
-On Windows PowerShell, activate the environment with:
+On Windows PowerShell, activate the environment and set the MLflow variables with:
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
+$env:MLFLOW_TRACKING_URI = "file:./mlruns"
+$env:MLFLOW_ALLOW_FILE_STORE = "true"
 ```
 
 Expected result:
 
 - The scripts print train and test RMSE values.
-- MLflow creates a local `mlruns/` folder if no tracking URI is configured.
+- MLflow creates a local `mlruns/` folder for run metadata and artifacts.
 - The scripts exit without errors.
 
 If the scripts fail locally, fix the local issue before creating the GitHub Actions workflow.
 
-## Step 2: Create a CI/CD Workflow File
+## Step 2: Create or Open the CI/CD Workflow File
 
-GitHub Actions workflows live in `.github/workflows/`. Create this file:
+GitHub Actions workflows live in `.github/workflows/`. This completed repository already has the workflow file. If students are using a starter copy, create this file:
 
 ```text
 .github/workflows/mlflow-ci-cd.yml
@@ -354,7 +360,7 @@ This prevents pull requests from publishing delivery outputs as if they were tru
 
 ## Step 4: Commit and Push the Workflow
 
-From the repository root:
+If students created the workflow from a starter copy, commit and push it from the repository root:
 
 ```bash
 git checkout -b add-github-actions
@@ -484,9 +490,19 @@ https://raw.githubusercontent.com/jbrownlee/Datasets/master/housing.csv
 
 If the network request fails, rerun the workflow. For a more robust project, commit a small teaching dataset to the repo or add a data download step with retry logic.
 
+### MLflow says the filesystem tracking backend is in maintenance mode
+
+Recent MLflow versions require an explicit opt-out before using the local filesystem tracking backend. Set this environment variable before local runs or in the GitHub Actions workflow:
+
+```bash
+export MLFLOW_ALLOW_FILE_STORE=true
+```
+
+In this tutorial's workflow, that variable is already set in the CI job.
+
 ### The artifact is missing
 
-Check whether the scripts created `mlruns/`. Also check the `Upload MLflow run artifact` step in the workflow logs.
+Check whether the scripts created `mlruns/`. If a training step failed before MLflow started a run, no artifact will be uploaded. Also check the `Upload MLflow run artifact` step in the workflow logs.
 
 ## Student Reflection Questions
 
