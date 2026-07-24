@@ -403,6 +403,20 @@ After the workflow finishes:
 
 This artifact contains the MLflow tracking directory produced by the CI run.
 
+### Brief Description of the Downloaded Outputs
+
+After unzipping the artifact, students may see a folder such as `0/`. This is the MLflow experiment folder for the default experiment.
+
+- `meta.yaml`: Basic metadata about the MLflow experiment or run.
+- Run ID folders, such as `0c9dd0c919374271b754f0a11074ed8d/`: One training run, including metrics, parameters, tags, and run artifacts.
+- `metrics/`: Model performance values logged by MLflow.
+- `params/`: Model settings such as `n_estimators`, `max_depth`, and `random_state`.
+- `artifacts/`: Files produced by the run, such as the estimator summary.
+- `models/`: The logged model files, including the serialized model and environment files.
+- `datasets/`: Metadata about datasets MLflow recorded during the run.
+
+Mac users may also see `.DS_Store` files. These are operating system metadata files and can be ignored.
+
 ## Step 7: Test Failure Behavior
 
 CI is most useful when students see it fail. Try one controlled failure on a separate branch:
